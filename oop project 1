@@ -1,0 +1,30 @@
+class AssetOfLifetime ():
+    def _init_(self, age, retire_age, annual_income, saving_rate, inflation_rate):
+        self.age = age
+        self.retire_age = retire_age
+        self.annual_income = annual_income
+        self.saving_rate = saving_rate
+        self.inflation_rate = inflation_rate
+
+    def calculate_lifetime_assets(self):
+        # Calculation of lifetime asset value
+        lifetime_income = self.annual_income * (self.retire_age - self.age)  # total income over the working years
+        lifetime_savings = lifetime_income * self.saving_rate  # total savings over the working years
+        investment_value = lifetime_savings * (1 + self.inflation_rate) ** (self.retire_age - self.age)  # future investment value of savings
+        lifetime_assets = investment_value + lifetime_income  # lifetime asset value
+
+        return lifetime_assets
+```
+
+
+
+age = 35
+retire_age = 65
+annual_income = 75000
+saving_rate = 0.2
+inflation_rate = 0.03
+
+asset = AssetOfLifetime(age, retire_age, annual_income, saving_rate, inflation_rate)
+lifetime_assets = asset.calculate_lifetime_assets()
+
+print("Your lifetime asset value is: $", round(lifetime_assets, 2))
